@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+
+{% block title%}Heart Disease{% endblock %}
+
+{% block body%}
+<div class="parent">
+
+    <div>
+        <form action="/analyse_h" method="post">
+            <br>
+            <label for="">Age</label>
+            <input type="number" step="0.01" name="input1"><br>
+
+            <label for="">Sex</label>
+            <input type="number" step="0.01" name="input2"><br>
+            
+            <label for="">cp</label>
+            <input type="number" step="0.01" name="input3"><br>
+            
+            <label for="">trestbps</label>
+            <input type="number" step="0.01" name="input4"><br>
+            
+            <label for="">chol</label>
+            <input type="number" step="0.01" name="input5"><br>
+            
+            <label for="">fbs</label>
+            <input type="number" step="0.01" name="input6"><br>
+            
+            <label for="">restecg</label>
+            <input type="number" step="0.01" name="input7"><br>
+            
+            <label for="">thalach</label>
+            <input type="number" step="0.01" name="input8"><br>
+            
+            <label for="">exang</label>
+            <input type="number" step="0.01" name="input9"><br>
+            
+            <label for="">oldpeak</label>
+            <input type="number" step="0.01" name="input10"><br>
+            
+            <label for="">slope</label>
+            <input type="number" step="0.01" name="input11"><br>
+            
+            <label for="">ca</label>
+            <input type="number" step="0.01" name="input12"><br>
+            
+            <label for="">thal</label>
+            <input type="number" step="0.01" name="input13"><br>
+            
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>  
+    </div>
+
+    <div>
+        <form action="/back" method="post">
+            <button type="submit">GO BACK</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
