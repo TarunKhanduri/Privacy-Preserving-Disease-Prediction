@@ -28,9 +28,13 @@ def predict_heart_fhe(m,n,input):
 
     # input
     numpy_input = np.asarray(input)
+    input_reshaped = numpy_input.reshape(1,-1)
+    std_data = scaler.transform(input_reshaped)
+    inp=std_data.flatten()
+    
 
     # encryption
-    enc_input = ts.ckks_vector(context, numpy_input)
+    enc_input = ts.ckks_vector(context, inp)
 
     # coeff,intercept
     coef = model.coef_.flatten()
@@ -46,12 +50,9 @@ def predict_heart_fhe(m,n,input):
     # decryption
 
     if(prediction.decrypt()[0] >= 0):
-        return 'The person have heart  disease'
+        return 'The person has heart  disease'
     else:
         return 'The person does not have heart disease'
-
-########################################################
-# SHE
 
 
 ########################################################
@@ -63,13 +64,17 @@ def predict_heart_phe(m,n,input):
     # model
     model,scaler=model_scaler_heart(m,n)
 
+    numpy_input = np.asarray(input)
+    input_reshaped = numpy_input.reshape(1,-1)
+    std_data = scaler.transform(input_reshaped)
+    inp=std_data.flatten()
+    input=inp.tolist()
 
     # encryption
     enc_input=[]
     for i in input:
         enc_input.append(public_key.encrypt(i))
 
-    # input
     numpy_input = np.asarray(enc_input)
     
     # coeff,intercept
@@ -87,7 +92,7 @@ def predict_heart_phe(m,n,input):
     # decryption
 
     if(private_key.decrypt(prediction) >= 0):
-        return 'The person have heart  disease'
+        return 'The person has heart  disease'
     else:
         return 'The person does not have heart disease'
 
@@ -113,9 +118,12 @@ def predict_heart_dp(m,n,input):
 
     # input
     numpy_input = np.asarray(input)
+    input_reshaped = numpy_input.reshape(1,-1)
+    std_data = scaler.transform(input_reshaped)
+    inp=std_data.flatten()
 
     # Add noise in the input
-    noisy_input = add_laplace_noise(numpy_input, 1, 0.5)
+    noisy_input = add_laplace_noise(inp, 1, 0.5)
     noisy_input = np.array(noisy_input)
 
     # coeff,intercept
@@ -133,7 +141,7 @@ def predict_heart_dp(m,n,input):
     # decryption
 
     if(prediction >= 0):
-        return 'The person have heart  disease'
+        return 'The person has heart  disease'
     else:
         return 'The person does not have heart disease'
 
@@ -152,9 +160,12 @@ def predict_heart_fhe_dp(m,n,input):
 
     # input
     numpy_input = np.asarray(input)
+    input_reshaped = numpy_input.reshape(1,-1)
+    std_data = scaler.transform(input_reshaped)
+    inp=std_data.flatten()
 
     # Add noise in the input
-    noisy_input = add_laplace_noise(numpy_input, 1, 0.5)
+    noisy_input = add_laplace_noise(inp, 1, 0.5)
     noisy_input = np.array(noisy_input)
 
     # encryption
@@ -174,7 +185,7 @@ def predict_heart_fhe_dp(m,n,input):
     # decryption
 
     if(prediction.decrypt()[0] >= 0):
-        return 'The person have heart  disease'
+        return 'The person has heart disease'
     else:
         return 'The person does not have heart disease'
 
@@ -194,4 +205,4 @@ def predict_heart(m,n,input):
     if(prediction[0] == 0):
         return 'The person does not have heart  disease'
     else:
-        return 'The person has disease'
+        return 'The person has heart disease'

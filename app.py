@@ -7,13 +7,11 @@ app= Flask(__name__)
 def index():
     return render_template("index.html")
 
-# move to heart disease page or diabetes page
+# move to heart disease page
 @app.route('/disease', methods=["GET", "POST"])
 def disease():
     if request.method == "POST":
-        page="index.html"
-        if request.form['text']=="heart":
-            page="heart"+".html"
+        page="heart.html"
     return render_template(page)
 
 # heart disease analysis
