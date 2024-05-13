@@ -4,11 +4,21 @@
 
 {% block body%}
 <div class="parent">
-    <h3>output using svm=   {{opt1}}</h3>
-    <h3>output using svm with ckks=   {{opt2}}</h3>
-    <h3>output using svm with ckks+dp=   {{opt3}}</h3>
-    <h3>output using svm with paillier=   {{opt4}}</h3>
-    <h3>output using svm with dp=   {{opt5}}</h3>
+    <div>
+        <h4>Output using svm=   {{opt1}}</h4>
+    </div>
+    <div>
+        <h4>Output using svm with ckks=   {{opt2}}</h4>
+    </div>
+    <div>
+        <h4>Output using svm with ckks+dp=   {{opt3}}</h4>
+    </div>
+    <div>
+        <h4>Output using svm with paillier=   {{opt4}}</h4>
+    </div>
+    <div>
+        <h4>Output using svm with dp=   {{opt5}}</h4>
+    </div>
     
     <form action="/back" method="post">
         <button type="submit">GO BACK</button>

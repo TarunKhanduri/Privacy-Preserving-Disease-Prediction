@@ -6,10 +6,21 @@
 <div class="parent">
     <h1 class="first">Privacy Preserving Disease Prediction</h1>
     <form action="/disease" method="post">
-        <select id="text" name="text">
+        <!-- <select id="text" name="text">
             <option value="heart">Heart_Disease</option>
-        </select>
-        <button type="submit">Submit</button>
+        </select> -->
+        <button type="submit">Heart Disease Prediction</button>
     </form>        
+</div>
+<div class="parent">
+    <h1>Performance On Testing Data</h1>
+    <h3>Fully Homomorphic Encryption(CKKS)</h3>
+    <img src="static/images/ckks.png" alt="">
+    <h3>Differential Privacy</h3>
+    <img src="static/images/dp.png" alt="">
+    <h3>Partial Homomorphic Encryption(Paillier)</h3>
+    <img src="static/images/phe.png" alt="">
+    <h3>Fully Homomorphic Encryption with Differential Privacy</h3>
+    <img src="static/images/ckks+dp.png" alt="">
 </div>
 {% endblock %}
